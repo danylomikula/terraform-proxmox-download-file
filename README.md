@@ -159,6 +159,49 @@ When a downloaded image is consumed by a VM (`disk.import_from`), removing the i
 The VM disk is decoupled from the image after first boot — Terraform destroys only the `proxmox_download_file` resource.
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+| ---- | ------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
+| <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | >= 0.104.0 |
+
+## Providers
+
+| Name | Version |
+| ---- | ------- |
+| <a name="provider_proxmox"></a> [proxmox](#provider\_proxmox) | >= 0.104.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+| ---- | ---- |
+| [proxmox_download_file.this](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/download_file) | resource |
+| [proxmox_oci_image.this](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/oci_image) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+| ---- | ----------- | ---- | ------- | :------: |
+| <a name="input_common_datastore_id"></a> [common\_datastore\_id](#input\_common\_datastore\_id) | Default datastore ID for all file downloads. | `string` | `"local"` | no |
+| <a name="input_common_node_name"></a> [common\_node\_name](#input\_common\_node\_name) | Default Proxmox node name for all file downloads. | `string` | `"pve"` | no |
+| <a name="input_files"></a> [files](#input\_files) | Map of file download configurations keyed by a friendly name. | <pre>map(object({<br/>    url                     = string<br/>    node_name               = optional(string)<br/>    datastore_id            = optional(string)<br/>    content_type            = optional(string, "iso")<br/>    file_name               = optional(string)<br/>    checksum                = optional(string)<br/>    checksum_algorithm      = optional(string, "sha256")<br/>    decompression_algorithm = optional(string)<br/>    upload_timeout          = optional(number, 600)<br/>    overwrite               = optional(bool, true)<br/>    overwrite_unmanaged     = optional(bool, false)<br/>    verify                  = optional(bool, true)<br/>  }))</pre> | `{}` | no |
+| <a name="input_oci_images"></a> [oci\_images](#input\_oci\_images) | Map of OCI image pull configurations keyed by a friendly name. | <pre>map(object({<br/>    reference           = string<br/>    node_name           = optional(string)<br/>    datastore_id        = optional(string)<br/>    file_name           = optional(string)<br/>    overwrite           = optional(bool, true)<br/>    overwrite_unmanaged = optional(bool)<br/>    upload_timeout      = optional(number, 600)<br/>  }))</pre> | `{}` | no |
+
+## Outputs
+
+| Name | Description |
+| ---- | ----------- |
+| <a name="output_file_ids"></a> [file\_ids](#output\_file\_ids) | Map of file keys to their resource IDs (for use as file\_id/import\_from in VM resources). |
+| <a name="output_files"></a> [files](#output\_files) | Map of all downloaded file resources with complete attributes. |
+| <a name="output_files_by_content_type"></a> [files\_by\_content\_type](#output\_files\_by\_content\_type) | Map of content types to lists of file IDs. |
+| <a name="output_files_by_node"></a> [files\_by\_node](#output\_files\_by\_node) | Map of node names to lists of file IDs downloaded to that node. |
+| <a name="output_oci_image_ids"></a> [oci\_image\_ids](#output\_oci\_image\_ids) | Map of OCI image keys to their resource IDs (for use as template\_file\_id in LXC resources). |
+| <a name="output_oci_images"></a> [oci\_images](#output\_oci\_images) | Map of all pulled OCI image resources with complete attributes. |
 <!-- END_TF_DOCS -->
 
 ## Related Modules

@@ -39,4 +39,40 @@ terraform destroy \
 ```
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+| ---- | ------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
+| <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | >= 0.104.0 |
+
+## Providers
+
+No providers.
+
+## Modules
+
+| Name | Source | Version |
+| ---- | ------ | ------- |
+| <a name="module_images"></a> [images](#module\_images) | ../.. | n/a |
+
+## Resources
+
+No resources.
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+| ---- | ----------- | ---- | ------- | :------: |
+| <a name="input_proxmox_api_token"></a> [proxmox\_api\_token](#input\_proxmox\_api\_token) | Proxmox API token. | `string` | n/a | yes |
+| <a name="input_proxmox_endpoint"></a> [proxmox\_endpoint](#input\_proxmox\_endpoint) | Proxmox API endpoint URL. | `string` | n/a | yes |
+| <a name="input_proxmox_insecure"></a> [proxmox\_insecure](#input\_proxmox\_insecure) | Skip TLS verification. | `bool` | `false` | no |
+
+## Outputs
+
+| Name | Description |
+| ---- | ----------- |
+| <a name="output_file_ids"></a> [file\_ids](#output\_file\_ids) | Map of file keys to their Proxmox file IDs. |
+| <a name="output_files_by_content_type"></a> [files\_by\_content\_type](#output\_files\_by\_content\_type) | Map of content types to lists of file IDs. |
+| <a name="output_files_by_node"></a> [files\_by\_node](#output\_files\_by\_node) | Map of node names to lists of file IDs downloaded to that node. |
 <!-- END_TF_DOCS -->
