@@ -35,7 +35,8 @@ variable "files" {
   validation {
     condition = alltrue([
       for key, file in var.files :
-      file.decompression_algorithm == null || contains(["gz", "lzo", "zst", "bz2"], file.decompression_algorithm)
+      contains(["gz", "lzo", "zst", "bz2"], file.decompression_algorithm)
+      if file.decompression_algorithm != null
     ])
     error_message = "decompression_algorithm must be one of: gz, lzo, zst, bz2."
   }
