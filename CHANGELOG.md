@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.0](https://github.com/danylomikula/terraform-proxmox-download-file/compare/v1.0.0...v1.1.0) (2026-04-27)
+## 1.0.0 (2026-04-27)
 
 
 ### Features
