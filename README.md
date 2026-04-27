@@ -20,7 +20,7 @@ Terraform module for downloading ISO images, cloud images, container templates, 
 ```hcl
 module "images" {
   source  = "danylomikula/download-file/proxmox"
-  version = "~> 1.1"
+  version = "~> 1.0"
 
   common_node_name    = "pve"
   common_datastore_id = "local"
